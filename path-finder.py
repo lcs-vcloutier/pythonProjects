@@ -24,6 +24,22 @@ def print_maze(maze, stdscr, path=[]):
         for j, value in enumerate(row): # j is the column
             stdscr.addstr(i, j*2, value, BLUE) # print value at i, j x 2
 
+# find the start (the O)
+def find_start(maze, start):
+     # loop over maze using enumerate (get index and value) in this case
+    for i, row in enumerate(maze): # i is the row 
+        for j, value in enumerate(row): # j is the column
+            if value == start: 
+                return i, j
+
+# find the best path (this is the algorithm)
+def find_path(maze, stdscr):
+    start = "O"
+    end = "X" 
+
+
+
+
 
 # standard output screen -> will override terminal
 def main(stdscr):
