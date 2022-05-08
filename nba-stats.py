@@ -27,6 +27,19 @@ def get_scoreboard():
 		print(f"Quarter: {period['current']}")
 		print(f"Clock: {clock}")
 
+def get_stats():
+	stats = get_links()['leagueTeamStatsLeaders']
+	teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams'] # notice how you can chain down the json
+	teams = list(filter(lambda x: x['name'] != "Team", teams)) # if function returns true keep it if not remove it
+	teams.sort(key=lambda x: int(x['ppg']['rank']))
+
+	for team in teams:
+		name = team['name']
+		nickname = team['nickname']
+		ppg = team['ppg']['avg']
+		print("================================")
+		print(f"{nickname} - {ppg}")
+	
 
 
-get_scoreboard()
+get_stats()
